@@ -1,0 +1,29 @@
+{
+  "name": "sqlite3-demo",
+  "version": "0.0.1",
+  "description": "sqlite3",
+  "dependencies": {
+    "bluebird": "^3.3.1",
+    "body-parser": "^1.14.0",
+    "bunyan": "^1.5.0",
+    "co-express": "^1.2.1",
+    "compression": "^1.6.0",
+    "express": "^4.13.0",
+    "express-handlebars": "^3.0.0",
+    "faker": "^3.0.1",
+    "helmet": "^1.1.0",
+    "hpp": "^0.2.0",
+    "lodash": "^4.2.1",
+    "sqlite3": "^3.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node bootstrap/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/swarajgiri/.git"
+  },
+  "author": "Swaraj Giri <swarajgiri@gmail.com> (https://twitter.com/swarajgiri)",
+  "license": "MIT"
+}
