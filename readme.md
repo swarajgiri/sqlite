@@ -1,12 +1,13 @@
 
-### Sqlite demo
+### Sqlite demo using
 - Express
 - Handlebars
 - Requirejs
 - Twiiter bootstrap
+- Datatables
 
 ### Requirements
--  Nodejs.
+-  Nodejs LTS
 
 ### Installation
 

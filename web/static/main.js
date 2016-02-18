@@ -3,16 +3,26 @@ require.config({
     paths: {
         'jquery'    : 'thirdparty/jquery/dist/jquery.min',
         'bootstrap' : 'thirdparty/bootstrap-css/js/bootstrap.min',
-        'nprogress' : 'thirdparty/nprogress/nprogress'
+        'nprogress' : 'thirdparty/nprogress/nprogress',
+        'datatables': 'thirdparty/datatables/media/js/jquery.dataTables',
+        'datatables-bootstrap': 'thirdparty/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap'
     },
     shim: {
         'bootstrap' : {
             'deps' : ['jquery']
+        },
+        'datatables': {
+            deps: ['jquery']
+        },
+        'datatables-bootstrap': {
+            deps: ['datatables']
         }
     }
 });
 
-require(['jquery', 'nprogress'], function ($, nprogress) {
+require(['jquery', 'nprogress', 'datatables-bootstrap'], function ($, nprogress) {
+    var $usersTable = $('.all-users').dataTable();
+
     nprogress.configure({ showSpinner: false });
 
     $(document).ajaxStart(function () {
@@ -26,29 +36,35 @@ require(['jquery', 'nprogress'], function ($, nprogress) {
     getUsers();
 
     $('.add-user .btn-primary').on('click', function () {
-        addUser(getUsers);
+        addUser();
     });
 
-    function addUser(cb) {
+    function addUser() {
         $.post('/users', function(res) {
-            cb();
+            renderTable($usersTable, [res.payload], false);
         });
     }
 
     function getUsers() {
         $.get('/users', function(res) {
-            var html = '';
-
-            $.each(res, function (index, user) {
-                html += '<tr>';
-                html += '<td>' + user.id +'</td>';
-                html += '<td>' + user.fName +'</td>';
-                html += '<td>' + user.lName +'</td>';
-                html += '<td>' + user.email +'</td>';
-                html += '</tr>';
-            });
-
-            $('.all-users tbody').html(html);
+            renderTable($usersTable, res, true);
         });
+    }
+
+    function renderTable($table, payload, clearTable) {
+        if (clearTable) {
+            $table.fnClearTable();
+        }
+
+        $.each(payload, function (index, user) {
+            $table.fnAddData([
+                user.id,
+                user.fName,
+                user.lName,
+                user.email
+            ]);
+        });
+
+        $table.fnDraw();
     }
 });

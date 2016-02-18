@@ -7,6 +7,9 @@
     "requirejs": "latest",
     "jquery": "~1.11.1",
     "bootstrap": "~3.3.6",
-    "nprogress": "~0.2.0"
+    "nprogress": "~0.2.0",
+    "datatables": "DataTables#~1.10.11",
+    "datatables-plugins": "~1.10.11",
+    "datatables-bootstrap3": "*"
   }
 }

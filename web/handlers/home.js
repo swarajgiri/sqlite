@@ -35,7 +35,8 @@ router.post('/users', wrap(function* (req, res, next) {
     }
 
     res.json({
-        'done': true
+        'done'   : true,
+        'payload': user
     });
 }));
 
