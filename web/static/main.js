@@ -21,7 +21,13 @@ require.config({
 });
 
 require(['jquery', 'nprogress', 'datatables-bootstrap'], function ($, nprogress) {
-    var $usersTable = $('.all-users').dataTable();
+    var $usersTable = $('.all-users').dataTable({
+        "ordering"  : false,
+        "info"      : false,
+        "processing": true,
+        "serverSide": true,
+         "ajax"     : "/users"
+    });
 
     nprogress.configure({ showSpinner: false });
 
@@ -33,7 +39,7 @@ require(['jquery', 'nprogress', 'datatables-bootstrap'], function ($, nprogress)
         nprogress.done(true);
     });
 
-    getUsers();
+    // getUsers();
 
     $('.add-user .btn-primary').on('click', function () {
         addUser();
@@ -51,20 +57,20 @@ require(['jquery', 'nprogress', 'datatables-bootstrap'], function ($, nprogress)
         });
     }
 
-    function renderTable($table, payload, clearTable) {
-        if (clearTable) {
-            $table.fnClearTable();
-        }
+    // function renderTable($table, payload, clearTable) {
+    //     if (clearTable) {
+    //         $table.fnClearTable();
+    //     }
 
-        $.each(payload, function (index, user) {
-            $table.fnAddData([
-                user.id,
-                user.fName,
-                user.lName,
-                user.email
-            ]);
-        });
+    //     $.each(payload, function (index, user) {
+    //         $table.fnAddData([
+    //             user.id,
+    //             user.fName,
+    //             user.lName,
+    //             user.email
+    //         ]);
+    //     });
 
-        $table.fnDraw();
-    }
+    //     $table.fnDraw();
+    // }
 });

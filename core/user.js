@@ -31,9 +31,9 @@ module.exports = function (cfg, db) {
             });
         }
 
-        static getAll() {
+        static getAll(start, end) {
             return new Promise((resolve, reject) => {
-                db.all('SELECT id, fname, lName, email FROM users', [], (err, rows) => {
+                db.all(`SELECT id, fname, lName, email FROM users LIMIT ${start}, ${end}`, [], (err, rows) => {
                     if (err) {
                         return reject(err);
                     }

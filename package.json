@@ -5,7 +5,6 @@
   "dependencies": {
     "bluebird": "^3.3.1",
     "body-parser": "^1.14.0",
-    "bunyan": "^1.5.0",
     "co-express": "^1.2.1",
     "compression": "^1.6.0",
     "express": "^4.13.0",
@@ -16,9 +15,12 @@
     "lodash": "^4.2.1",
     "sqlite3": "^3.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  },
   "scripts": {
-    "start": "node bootstrap/app.js"
+    "start": "node bootstrap/app.js",
+    "start:dev": "nodemon bootstrap/app.js"
   },
   "repository": {
     "type": "git",
